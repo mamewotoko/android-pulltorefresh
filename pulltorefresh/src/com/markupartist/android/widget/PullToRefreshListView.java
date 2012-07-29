@@ -1,6 +1,5 @@
 package com.markupartist.android.widget;
 
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -31,6 +30,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
     private static final String TAG = "PullToRefreshListView";
 
     private OnRefreshListener mOnRefreshListener;
+    private OnCancelListener mOnCancelListener;
 
     /**
      * Listener that will receive notifications every time the list scrolls.
@@ -43,7 +43,8 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
     private ImageView mRefreshViewImage;
     private ProgressBar mRefreshViewProgress;
     private TextView mRefreshViewLastUpdated;
-
+    private ImageView mCancelImage;
+    
     private int mCurrentScrollState;
     private int mRefreshState;
 
@@ -89,8 +90,8 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
         mInflater = (LayoutInflater) context.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
 
-		mRefreshView = (RelativeLayout) mInflater.inflate(
-				R.layout.pull_to_refresh_header, this, false);
+        mRefreshView = (RelativeLayout) mInflater.inflate(
+                R.layout.pull_to_refresh_header, this, false);
         mRefreshViewText =
             (TextView) mRefreshView.findViewById(R.id.pull_to_refresh_text);
         mRefreshViewImage =
@@ -99,9 +100,12 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
             (ProgressBar) mRefreshView.findViewById(R.id.pull_to_refresh_progress);
         mRefreshViewLastUpdated =
             (TextView) mRefreshView.findViewById(R.id.pull_to_refresh_updated_at);
-
+        mCancelImage =
+            (ImageView) mRefreshView.findViewById(R.id.cancel_image);
+        mCancelImage.setOnClickListener(new OnClickCancelListener());
         mRefreshViewImage.setMinimumHeight(50);
         mRefreshView.setOnClickListener(new OnClickRefreshListener());
+
         mRefreshOriginalTopPadding = mRefreshView.getPaddingTop();
 
         mRefreshState = TAP_TO_REFRESH;
@@ -145,6 +149,15 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
      */
     public void setOnRefreshListener(OnRefreshListener onRefreshListener) {
         mOnRefreshListener = onRefreshListener;
+    }
+    
+    /**
+     * Register a callback to be invoked when refresh is cancel.ed.
+     * 
+     * @param listener The callback to run.
+     */
+    public void setOnCancelListener(OnCancelListener listener) {
+        mOnCancelListener = listener;
     }
 
     /**
@@ -251,6 +264,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
             // Hide progress bar and arrow.
             mRefreshViewImage.setVisibility(View.GONE);
             mRefreshViewProgress.setVisibility(View.GONE);
+            mCancelImage.setVisibility(View.GONE);
         }
     }
 
@@ -338,6 +352,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
         // We need this hack, otherwise it will keep the previous drawable.
         mRefreshViewImage.setImageDrawable(null);
         mRefreshViewProgress.setVisibility(View.VISIBLE);
+        mCancelImage.setVisibility(View.VISIBLE);
 
         // Set refresh view text to the refreshing label
         mRefreshViewText.setText(R.string.pull_to_refresh_refreshing_label);
@@ -353,6 +368,12 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
         }
     }
 
+    public void onCancel() {
+        if(mOnCancelListener != null) {
+            mOnCancelListener.onCancel();
+        }
+    }
+    
     /**
      * Resets the list to a normal state after a refresh.
      * @param lastUpdated Last updated at.
@@ -365,8 +386,8 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
     /**
      * Resets the list to a normal state after a refresh.
      */
-    public void onRefreshComplete() {        
-        Log.d(TAG, "onRefreshComplete");
+    public void onRefreshComplete() {
+        Log.d(TAG, "onRefreshComplete: bottom " + mRefreshView.getBottom());
 
         resetHeader();
 
@@ -392,8 +413,18 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
                 onRefresh();
             }
         }
-
     }
+    
+    private class OnClickCancelListener implements OnClickListener {
+        @Override
+        public void onClick(View v) {
+            if (mRefreshState == REFRESHING) {
+                onRefreshComplete();
+                onCancel();
+            }
+        }
+    }
+
 
     /**
      * Interface definition for a callback to be invoked when list should be
@@ -407,5 +438,12 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
          * expected to indicate that the refresh has completed.
          */
         public void onRefresh();
+    }
+
+    public interface OnCancelListener {
+        /**
+         * Called when refresh is cancelled.
+         */
+        public void onCancel();
     }
 }
