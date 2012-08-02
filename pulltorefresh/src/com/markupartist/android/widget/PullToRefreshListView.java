@@ -347,7 +347,6 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 
     public void prepareForRefresh() {
         resetHeaderPadding();
-
         mRefreshViewImage.setVisibility(View.GONE);
         // We need this hack, otherwise it will keep the previous drawable.
         mRefreshViewImage.setImageDrawable(null);
@@ -362,7 +361,6 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 
     public void onRefresh() {
         Log.d(TAG, "onRefresh");
-
         if (mOnRefreshListener != null) {
             mOnRefreshListener.onRefresh();
         }
@@ -397,6 +395,20 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
             invalidateViews();
             setSelection(1);
         }
+    }
+
+    /**
+     * dummy API to refresh by API
+     */
+    public void startRefresh() {
+        prepareForRefresh();
+        onRefresh();
+    }
+
+    //force
+    public void hideHeader() {
+        mRefreshState = REFRESHING;
+        onRefreshComplete();
     }
 
     /**
