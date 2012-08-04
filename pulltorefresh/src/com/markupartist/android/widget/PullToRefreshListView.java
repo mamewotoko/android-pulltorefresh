@@ -418,8 +418,9 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
     @Override
     protected void onDraw (Canvas canvas) {
     	if(mHideHeader){
+    		Log.d(TAG, "onDraw: hideHeader");
+    		mHideHeader = false;
     		setSelection(1);
-    		mHideHeader = true;
     	}
     }
 
