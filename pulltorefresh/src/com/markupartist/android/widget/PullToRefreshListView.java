@@ -1,6 +1,7 @@
 package com.markupartist.android.widget;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 
     private OnRefreshListener mOnRefreshListener;
     private OnCancelListener mOnCancelListener;
+    private boolean mHideHeader;
 
     /**
      * Listener that will receive notifications every time the list scrolls.
@@ -73,6 +75,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
     }
 
     private void init(Context context) {
+    	mHideHeader = false;
         // Load all of the animations we need in code rather than through XML
         mFlipAnimation = new RotateAnimation(0, -180,
                 RotateAnimation.RELATIVE_TO_SELF, 0.5f,
@@ -407,8 +410,17 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 
     //force
     public void hideHeader() {
-        mRefreshState = REFRESHING;
-        onRefreshComplete();
+    	Log.d(TAG, "hideHeader is called");
+    	mHideHeader = true;
+    	invalidate();
+    }
+    
+    @Override
+    protected void onDraw (Canvas canvas) {
+    	if(mHideHeader){
+    		setSelection(1);
+    		mHideHeader = true;
+    	}
     }
 
     /**
