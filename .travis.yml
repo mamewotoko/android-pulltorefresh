@@ -6,4 +6,5 @@ android:
     licences:
         - '.+'
     script:
+        - cd pulltorefresh
         - ./gradlew build
