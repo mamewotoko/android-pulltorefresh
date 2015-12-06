@@ -5,6 +5,6 @@ android:
         - android-10
     licences:
         - '.+'
-    script:
-        - cd pulltorefresh
-        - ./gradlew build
+script:
+    - cd pulltorefresh
+    - ./gradlew build
