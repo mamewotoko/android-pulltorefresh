@@ -1,4 +1,4 @@
-# Pull To Refresh for Android
+# Pull To Refresh for Android [![Build Status](https://travis-ci.org/mamewotoko/android-pulltorefresh.svg)](https://travis-ci.org/mamewotoko/android-pulltorefresh)
 
 This project aims to provide a reusable pull to refresh widget for Android.
 
