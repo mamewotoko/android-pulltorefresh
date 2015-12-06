@@ -73,6 +73,12 @@ the drawable-hdpi folder in the library project.
 * [Tim Mahoney](https://github.com/timahoney)
 * [Richard Guest](https://github.com/quiffman)
 
+## 1.6 Build
+
+```bash
+  ./gradlew build
+```
+
 ## Are you using this widget?
 
 If you are using this widget please feel free to add your app to the
