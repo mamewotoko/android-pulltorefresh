@@ -60,6 +60,12 @@ To use the widget on 1.5 the necessary drawables needs to be copied to that
 projects drawable folder. The drawables needed by the widget can be found in
 the drawable-hdpi folder in the library project.
 
+## 1.6 Build
+
+```bash
+  ./gradlew build
+```
+
 ## Contributors
 
 * [Jason Knight](http://www.synthable.com/) - <https://github.com/synthable>
@@ -73,12 +79,6 @@ the drawable-hdpi folder in the library project.
 * [Tim Mahoney](https://github.com/timahoney)
 * [Richard Guest](https://github.com/quiffman)
 
-## 1.6 Build
-
-```bash
-  ./gradlew build
-```
-
 ## Are you using this widget?
 
 If you are using this widget please feel free to add your app to the
@@ -88,5 +88,3 @@ If you are using this widget please feel free to add your app to the
 Copyright (c) 2011 [Johan Nilsson](http://markupartist.com)
 
 Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
-
-
