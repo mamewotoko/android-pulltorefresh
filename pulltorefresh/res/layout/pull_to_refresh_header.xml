@@ -76,7 +76,8 @@
         android:layout_marginRight="5dp"
         android:maxHeight="5dip"
         android:maxWidth="5dip"
-        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:src="@drawable/ic_clear_white_36dp"
+        android:contentDescription="@string/abort_loading"
         android:visibility="gone" />
 
 </RelativeLayout>

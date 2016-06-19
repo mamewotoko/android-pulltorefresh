@@ -5,4 +5,5 @@
     <string name="pull_to_refresh_release_label">Släpp för att uppdatera&#8230;</string>
     <string name="pull_to_refresh_refreshing_label">Uppdaterar&#8230;</string>
     <string name="pull_to_refresh_tap_label">Tryck för att uppdatera&#8230;</string>
+    <string name="abort_loading">avbryta lastning</string>
 </resources>
