@@ -43,6 +43,7 @@
         android:visibility="gone"
         android:layout_gravity="center"
         android:gravity="center"
+        android:contentDescription="@string/header_icon_arrow"
         android:src="@drawable/ic_pulltorefresh_arrow"
         />
     <TextView

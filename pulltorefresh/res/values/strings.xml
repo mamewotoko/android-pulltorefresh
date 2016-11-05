@@ -6,4 +6,5 @@
     <string name="pull_to_refresh_refreshing_label">Loading&#8230;</string>
     <string name="pull_to_refresh_tap_label">Tap to refresh&#8230;</string>
     <string name="abort_loading">Abort loading</string>
+    <string name="header_icon_arrow">Pull to refesh</string>
 </resources>
