@@ -7,4 +7,5 @@ android:
         - '.+'
 script:
     - cd pulltorefresh
-    - ./gradlew build
+    - ./gradlew assembleDebug
+
