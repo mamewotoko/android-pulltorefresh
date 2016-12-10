@@ -3,7 +3,6 @@ package com.markupartist.android.widget;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -363,7 +362,6 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
     }
 
     public void onRefresh() {
-        Log.d(TAG, "onRefresh");
         if (mOnRefreshListener != null) {
             mOnRefreshListener.onRefresh();
         }
@@ -388,8 +386,6 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
      * Resets the list to a normal state after a refresh.
      */
     public void onRefreshComplete() {
-        Log.d(TAG, "onRefreshComplete: bottom " + mRefreshView.getBottom());
-
         resetHeader();
 
         // If refresh view is visible when loading completes, scroll down to
@@ -410,7 +406,6 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 
     //force
     public void hideHeader() {
-    	Log.d(TAG, "hideHeader is called");
     	mHideHeader = true;
     	invalidate();
     }
@@ -418,7 +413,6 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
     @Override
     protected void onDraw (Canvas canvas) {
     	if(mHideHeader){
-    		Log.d(TAG, "onDraw: hideHeader");
     		mHideHeader = false;
     		setSelection(1);
     	}
