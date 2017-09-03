@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/tak/dev/podplayer/libsrc/pulltorefresh/pulltorefresh/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ic_clear_white_36dp.png",
+        "source": "/Users/tak/dev/podplayer/libsrc/pulltorefresh/pulltorefresh/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ic_clear_white_36dp.png"
+    },
+    {
+        "merged": "/Users/tak/dev/podplayer/libsrc/pulltorefresh/pulltorefresh/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ic_pulltorefresh_arrow.png",
+        "source": "/Users/tak/dev/podplayer/libsrc/pulltorefresh/pulltorefresh/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ic_pulltorefresh_arrow.png"
+    }
+]
